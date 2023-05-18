@@ -1,6 +1,4 @@
 class LeasesController < ApplicationController
-rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
 
     # POST /leases
     def create
@@ -22,7 +20,4 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         params.permit(:rent, :apartment_id, :tenant_id)
     end
 
-    def render_not_found_response
-        render josn: {error: "Lease not found"},status: :not_found
-    end
 end

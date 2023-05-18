@@ -1,5 +1,4 @@
 class TenantsController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     # GET /tenants
     def index 
@@ -23,7 +22,7 @@ class TenantsController < ApplicationController
     def update
         tenant = Tenant.find(params[:id])
         tenant.update!(tenants_params)
-        render josn: tenant
+        render json: tenant
     end
     
     # DELETE /tenants/:id
@@ -39,7 +38,4 @@ class TenantsController < ApplicationController
         params.permit(:name, :age)
     end
 
-    def render_not_found_response
-        render josn: {error: "Tenant not found"},status: :not_found
-    end
 end
